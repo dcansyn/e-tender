@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  etendermongodb:
+    image: mongo
+
+  etender.products:
+    image: ${DOCKER_REGISTRY-}etenderproducts
+    build:
+      context: .
+      dockerfile: ETender.Products/Dockerfile

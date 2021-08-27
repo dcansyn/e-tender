@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  etendermongodb:
+    container_name: etendermongodb
+    restart: always
+    volumes:
+      - ${WEBAPP_STORAGE_HOME}/site:/data/db
+    ports:
+      - "27017:27017"
+
+  etender.products:
+    container_name: etenderproducts
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ProductDatabaseSettings:ConnectionString=mongodb://etendermongodb:27017"
+    depends_on:
+      - etendermongodb
+    ports:
+      - "8000:80"
+    volumes:
+      - ${HOME}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
