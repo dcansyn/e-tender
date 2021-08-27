@@ -38,7 +38,7 @@ Udemy Url: https://www.udemy.com/course/net-5-microservice-architecture-ile-e-au
 - Swagger Open API Implementation
 - Docker
 - Docker Compose
-- 
+
 ## Microservice Architecture
 
 ![N|Solid](https://cansayan.com.tr/assets/upload/others/micro-service-infrastructure.jpg)
