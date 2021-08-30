@@ -1,11 +1,20 @@
 version: '3.4'
 
 services:
+### Mongo Db ###
   etendermongodb:
     image: mongo
-
+    
+### Product Service ###
   etender.products:
     image: ${DOCKER_REGISTRY-}etenderproducts
     build:
       context: .
       dockerfile: ETender.Products/Dockerfile
+      
+### Sourcing Service ###
+  etender.sourcing:
+    image: ${DOCKER_REGISTRY-}etendersourcing
+    build:
+      context: .
+      dockerfile: ETender.Sourcing/Dockerfile
