@@ -4,6 +4,10 @@ services:
 ### Mongo Db ###
   etendermongodb:
     image: mongo
+
+### RabbitMQ ###
+  rabbitmq:
+    image: rabbitmq:3-management
     
 ### Product Service ###
   etender.products:

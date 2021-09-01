@@ -8,6 +8,14 @@ services:
     ports:
       - "27017:27017"
 
+### RabbitMQ ###
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
 ### Product Service ###
   etender.products:
     container_name: etenderproducts
@@ -25,7 +33,9 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "SourcingDatabaseSettings:ConnectionString=mongodb://etendermongodb:27017"
+      - "EventBus:HostName=rabbitmq"
     depends_on:
       - etendermongodb
+      - rabbitmq
     ports:
       - "8001:80"

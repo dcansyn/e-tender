@@ -7,6 +7,7 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["ETender.Sourcing/ETender.Sourcing.csproj", "ETender.Sourcing/"]
+COPY ["EventBusRabbitMQ/EventBusRabbitMQ.csproj", "EventBusRabbitMQ/"]
 RUN dotnet restore "ETender.Sourcing/ETender.Sourcing.csproj"
 COPY . .
 WORKDIR "/src/ETender.Sourcing"
