@@ -47,6 +47,7 @@ namespace ETender.Sourcing
             services.AddTransient<IAuctionRepository, AuctionRepository>();
             services.AddTransient<IBidRepository, BidRepository>();
 
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddSingleton<IRabbitMQPersistentConnection>(sp =>
             {
