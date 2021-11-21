@@ -8,6 +8,10 @@ services:
 ### RabbitMQ ###
   rabbitmq:
     image: rabbitmq:3-management
+      
+### MSSQL ###
+  etendermssql:
+    image: mcr.microsoft.com/mssql/server
     
 ### Product Service ###
   etender.products:

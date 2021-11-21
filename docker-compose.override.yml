@@ -15,6 +15,15 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
+      
+### MSSQL ###
+  etendermssql:
+    container_name: etendersqldb
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "Odb12345678"
+      ACCEPT_EULA: "Y"
 
 ### Product Service ###
   etender.products:
