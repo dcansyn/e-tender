@@ -18,7 +18,7 @@ services:
       
 ### MSSQL ###
   etendermssql:
-    container_name: etendersqldb
+    container_name: etendermssql
     ports:
       - "1433:1433"
     environment:
@@ -48,3 +48,16 @@ services:
       - rabbitmq
     ports:
       - "8001:80"
+      
+### Order Service ###
+  etender.order:
+    container_name: etenderorder
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:OrderConnection=Server=etendermssql;Database=OrderDb;User Id=sa;Password=Odb12345678"
+      - "EventBus:HostName=rabbitmq"
+    depends_on:
+      - etendermssql
+      - rabbitmq
+    ports:
+      - "8002:80"

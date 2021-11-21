@@ -26,3 +26,10 @@ services:
     build:
       context: .
       dockerfile: ETender.Sourcing/Dockerfile
+      
+### Order Service ###
+  etender.order:
+    image: ${DOCKER_REGISTRY-}etenderorder
+    build:
+      context: .
+      dockerfile: ETender.Order/Dockerfile
