@@ -13,6 +13,13 @@ services:
   etendermssql:
     image: mcr.microsoft.com/mssql/server
     
+### Order Service ###
+  etender.apigateway:
+    image: ${DOCKER_REGISTRY-}etenderapigateway
+    build:
+      context: .
+      dockerfile: ETender.APIGateway/Dockerfile
+
 ### Product Service ###
   etender.products:
     image: ${DOCKER_REGISTRY-}etenderproducts
