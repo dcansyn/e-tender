@@ -1,5 +1,6 @@
 using ETender.Sourcing.Data;
 using ETender.Sourcing.Data.Interfaces;
+using ETender.Sourcing.Hubs;
 using ETender.Sourcing.Repositories;
 using ETender.Sourcing.Repositories.Interfaces;
 using ETender.Sourcing.Settings;
@@ -78,6 +79,17 @@ namespace ETender.Sourcing
             });
 
             services.AddSingleton<EventBusRabbitMQProducer>();
+
+            services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials()
+                        .WithOrigins("https://localhost:44398");
+            }));
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -94,8 +106,11 @@ namespace ETender.Sourcing
 
             app.UseAuthorization();
 
+            app.UseCors("CorsPolicy");
+
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<AuctionHub>("/auctionhub");
                 endpoints.MapControllers();
             });
         }
